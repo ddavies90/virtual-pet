@@ -2,7 +2,7 @@
   "name": "virtual-pet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "virtual-pet.js",
   "scripts": {
     "test": "jest"
   },
