@@ -1,4 +1,4 @@
-const {Pet, MAXIMUM_FITNESS} = require("../src/pet");
+const {Pet, MAXIMUM_FITNESS, MINIMUM_HUNGER, HUNGRY, UNFIT} = require("../src/pet");
 
 let pet;
 
@@ -27,12 +27,34 @@ describe("pet", () => {
     });
 
     it("When walk function is called, fitness is increased by 4 to a maximum of 10", () => {
-        pet.fitness = 5
+        pet.fitness = 5;
         pet.walk();
         expect(pet.fitness).toEqual(9);
 
         pet.walk();
         expect(pet.fitness).toEqual(MAXIMUM_FITNESS);
+    });
 
+    it("When feed function is called, hunger is decreased by 3 to a minimum of 0", () => {
+        pet.hunger = 4;
+        pet.feed();
+        expect(pet.hunger).toEqual(1);
+
+        pet.feed();
+        expect(pet.hunger).toEqual(0);
+    });
+
+    it("When checkUp function is called returns how the pet is feeling and what it needs", () => {
+        expect(pet.checkUp()).toBe('I feel great!');
+
+        pet.hunger = HUNGRY;
+        pet.fitness = MAXIMUM_FITNESS;
+        expect(pet.checkUp()).toBe('I am hungry');
+
+        pet.fitness = UNFIT;
+        expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
+
+        pet.hunger = MINIMUM_HUNGER;
+        expect(pet.checkUp()).toBe('I need a walk');
     });
 });  
