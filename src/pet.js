@@ -5,7 +5,7 @@ const UNFIT = 3;
 //Why does this break my code and throw an exception even when the if statement is false?
 // const guardFunc = function () {
 //     if (!this.isAlive) {
-//         throw 'Your pet is no longer alive :('
+//         throw new Error('Your pet is no longer alive :(');
 //     };
 // };
 
@@ -23,7 +23,7 @@ Pet.prototype = {
     growUp() {
         // guardFunc();
         if (!this.isAlive) {
-            throw 'Your pet is no longer alive :('
+            throw new Error('Your pet is no longer alive :(');
         };
         this.age += 1;
         this.hunger += 5;
@@ -31,7 +31,7 @@ Pet.prototype = {
     },
     walk() {
         if (!this.isAlive) {
-            throw 'Your pet is no longer alive :('
+            throw new Error('Your pet is no longer alive :(');
         };
         if (this.fitness + 4 > MAXIMUM_FITNESS) {
             this.fitness = 10;
@@ -42,7 +42,7 @@ Pet.prototype = {
     },
     feed() {
         if (!this.isAlive) {
-            throw 'Your pet is no longer alive :('
+            throw new Error('Your pet is no longer alive :(');
         };
         if (this.hunger - 3 < MINIMUM_HUNGER) {
             this.hunger = 0;
