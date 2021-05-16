@@ -13,8 +13,10 @@ This project was part of the OOP section of the Manchester Codes Software Engine
 
 - You can feed your pet to decrease it's hunger. 
 
-- You can talk to your pet to see if it needs feeding or walking
+- You can talk to your pet to see if it needs feeding or walking.
 
-- If your pet gets too hungry or unfit, it will DIE 
+- If your pet gets too hungry or unfit, it will DIE :(
 
-- If your pet gets to 30 days old it will DIE 
+- If your pet gets to 30 days old it will DIE :(
+
+- It can have children and store reference to its kids.
