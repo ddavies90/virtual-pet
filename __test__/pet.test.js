@@ -8,13 +8,14 @@ beforeEach( ()=> {
 
 describe("constructor", () => {
     it("instantiates a new Pet object with the name Fido", () => {
-        expect(pet).toBeInstanceOf(Object);
+        expect(pet).toBeInstanceOf(Pet);
     });
 
-    it("Has an initial age of 0, hunger of 0 and fitness of 10", () => {
+    it("Has an initial age of 0, hunger of 0, fitness of 10 and to have no children", () => {
         expect(pet.age).toEqual(0);
         expect(pet.hunger).toEqual(0);
         expect(pet.fitness).toEqual(10);
+        expect(pet.children).toEqual([]);
     });
 });
 
@@ -155,6 +156,44 @@ describe("isAlive", () => {
         expect(pet.isAlive).toBe(false);
         pet.fitness = -10000000;
         expect(pet.isAlive).toBe(false);
+    });
+});
+
+describe("haveBaby", () => {
+    //putting variable in 'describe' block was breaking the test - had to put it in 'it' block - Why?
+    it("Creates a new Pet with a name when haveABaby is called", () => {
+        expect(pet.haveBaby('Charles')).toBeInstanceOf(Pet);
+    });
+
+    it("Adds child pet to parent array of children", () => {
+        pet.haveBaby('Charles');
+        expect(pet.children).toEqual(expect.arrayContaining([expect.objectContaining({name: "Charles"})]));
+
+        pet.haveBaby('Amelia');
+        expect(pet.children).toEqual(expect.arrayContaining([expect.objectContaining({name: "Amelia"})]));
+
+        expect(pet.children).toHaveLength(2);
+    });
+
+    it("Throws an error if pet is dead due to old age", () => {
+        pet.age = 9001;
+        expect( () => {
+            pet.haveBaby('Jameela');
+        }).toThrow('Your pet is no longer alive :(');
+    });
+
+    it("Throws an error if pet is dead due to starvation", () => {
+        pet.hunger = 13;
+        expect( () => {
+            pet.haveBaby('Ross');
+        }).toThrow('Your pet is no longer alive :(');
+    });
+
+    it("Throws an error if pet is dead due to poor fitness", () => {
+        pet.fitness = -7;
+        expect( () => {
+            pet.haveBaby("Billy Butcher");
+        }).toThrow('Your pet is no longer alive :(');
     });
 });
 
