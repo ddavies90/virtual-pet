@@ -30,19 +30,19 @@ describe("growUp", () => {
         pet.age = 30;
         expect( () => {
             pet.growUp();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
     it("Throws an error if pet is dead due to starvation", () => {
         pet.hunger = 12;
         expect( () => {
             pet.growUp();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
     it("Throws an error if pet is dead due to poor fitness", () => {
         pet.fitness = -2;
         expect( () => {
             pet.growUp();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
 });
 
@@ -60,19 +60,19 @@ describe("walk", () => {
         pet.age = 31;
         expect( () => {
             pet.walk();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
     it("Throws an error if pet is dead due to starvation", () => {
         pet.hunger = 10;
         expect( () => {
             pet.walk();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
     it("Throws an error if pet is dead due to poor fitness", () => {
         pet.fitness = -12900;
         expect( () => {
             pet.walk();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
 });
     
@@ -89,19 +89,19 @@ describe("feed", () => {
         pet.age = 36;
         expect( () => {
             pet.feed();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
     it("Throws an error if pet is dead due to starvation", () => {
         pet.hunger = 4000;
         expect( () => {
             pet.feed();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
     it("Throws an error if pet is dead due to poor fitness", () => {
         pet.fitness = 0;
         expect( () => {
             pet.feed();
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
 });
 
@@ -120,7 +120,7 @@ describe("checkUp", () => {
         expect(pet.checkUp()).toBe('I need a walk');
 
         pet.age = 30;
-        expect(pet.checkUp()).toBe('Your pet is no longer alive :(');
+        expect(pet.checkUp()).toBe(`${pet.name} is dead! RIP`);
     });
 });
 
@@ -160,7 +160,6 @@ describe("isAlive", () => {
 });
 
 describe("haveBaby", () => {
-    //putting variable in 'describe' block was breaking the test - had to put it in 'it' block - Why?
     it("Creates a new Pet with a name when haveABaby is called", () => {
         expect(pet.haveBaby('Charles')).toBeInstanceOf(Pet);
     });
@@ -179,21 +178,21 @@ describe("haveBaby", () => {
         pet.age = 9001;
         expect( () => {
             pet.haveBaby('Jameela');
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
 
     it("Throws an error if pet is dead due to starvation", () => {
         pet.hunger = 13;
         expect( () => {
             pet.haveBaby('Ross');
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
 
     it("Throws an error if pet is dead due to poor fitness", () => {
         pet.fitness = -7;
         expect( () => {
             pet.haveBaby("Billy Butcher");
-        }).toThrow('Your pet is no longer alive :(');
+        }).toThrow(`${pet.name} is dead! RIP`);
     });
 });
 

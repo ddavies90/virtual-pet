@@ -2,12 +2,7 @@ const MAXIMUM_FITNESS = 10;
 const MINIMUM_HUNGER = 0;
 const HUNGRY = 5;
 const UNFIT = 3;
-//Why does this break my code and throw an exception even when the if statement is false?
-// const guardFunc = function () {
-//     if (!this.isAlive) {
-//         throw new Error('Your pet is no longer alive :(');
-//     };
-// };
+
 
 function Pet (name) {
     this.name = name
@@ -22,9 +17,8 @@ Pet.prototype = {
         return this.age < 30 && this.hunger < 10 && this.fitness > 0;
     },
     growUp() {
-        // guardFunc();
         if (!this.isAlive) {
-            throw new Error('Your pet is no longer alive :(');
+            throw new Error(`${this.name} is dead! RIP`);
         };
         this.age += 1;
         this.hunger += 5;
@@ -32,7 +26,7 @@ Pet.prototype = {
     },
     walk() {
         if (!this.isAlive) {
-            throw new Error('Your pet is no longer alive :(');
+            throw new Error(`${this.name} is dead! RIP`);
         };
         if (this.fitness + 4 > MAXIMUM_FITNESS) {
             this.fitness = 10;
@@ -43,7 +37,7 @@ Pet.prototype = {
     },
     feed() {
         if (!this.isAlive) {
-            throw new Error('Your pet is no longer alive :(');
+            throw new Error(`${this.name} is dead! RIP`);
         };
         if (this.hunger - 3 < MINIMUM_HUNGER) {
             this.hunger = 0;
@@ -53,7 +47,7 @@ Pet.prototype = {
     },
     checkUp() {
         if (!this.isAlive) {
-            return "Your pet is no longer alive :(";
+            return `${this.name} is dead! RIP`;
         } else if (this.hunger >= HUNGRY && this.fitness <= UNFIT) {
             return "I am hungry AND I need a walk"
         } else if (this.hunger >= HUNGRY) {
@@ -66,7 +60,7 @@ Pet.prototype = {
     },
     haveBaby(childName) {
         if (!this.isAlive) {
-            throw new Error('Your pet is no longer alive :(');
+            throw new Error(`${this.name} is dead! RIP`);
         } else {
         const child = new Pet(childName);
         this.children.push(child);
